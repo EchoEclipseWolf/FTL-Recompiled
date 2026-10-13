@@ -1,0 +1,31 @@
+# LLVM 22's opt-in enum checker rejects valid MSVC STL filesystem bitmasks.
+# Keep the rest of the analyzer enabled; revisit this exclusion on LLVM upgrades.
+Checks: >-
+  -*,
+  clang-analyzer-*,
+  -clang-analyzer-optin.core.EnumCastOutOfRange,
+  bugprone-argument-comment,
+  bugprone-assert-side-effect,
+  bugprone-branch-clone,
+  bugprone-dangling-handle,
+  bugprone-infinite-loop,
+  bugprone-macro-parentheses,
+  bugprone-misplaced-widening-cast,
+  bugprone-sizeof-expression,
+  bugprone-suspicious-semicolon,
+  bugprone-use-after-move,
+  misc-definitions-in-headers,
+  misc-redundant-expression,
+  performance-*,
+  modernize-use-nullptr,
+  modernize-use-override,
+  readability-braces-around-statements,
+  readability-container-size-empty,
+  readability-duplicate-include,
+  readability-inconsistent-declaration-parameter-name,
+  readability-isolate-declaration,
+  readability-redundant-control-flow,
+  readability-simplify-boolean-expr
+WarningsAsErrors: '*'
+HeaderFilterRegex: '[/\\]src[/\\].*'
+FormatStyle: file

@@ -1,0 +1,40 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {"major": 4, "minor": 2, "patch": 0},
+  "configurePresets": [
+    {
+      "name": "windows-lint", "displayName": "Windows clang-tidy compilation database",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/cmake/windows-lint",
+      "cacheVariables": {"CMAKE_BUILD_TYPE": "Debug", "CMAKE_EXPORT_COMPILE_COMMANDS": "ON", "CMAKE_CXX_SCAN_FOR_MODULES": "OFF", "CMAKE_C_COMPILER": "cl", "CMAKE_CXX_COMPILER": "cl", "BUILD_TESTING": "ON"},
+      "condition": {"type": "equals", "lhs": "${hostSystemName}", "rhs": "Windows"}
+    },
+    {
+      "name": "windows-vs2026", "displayName": "Visual Studio 2026 x64",
+      "generator": "Visual Studio 18 2026", "architecture": "x64",
+      "binaryDir": "${sourceDir}/build/cmake/vs2026-x64",
+      "cacheVariables": {"BUILD_TESTING": "ON"},
+      "condition": {"type": "equals", "lhs": "${hostSystemName}", "rhs": "Windows"}
+    },
+    {
+      "name": "linux-x64-debug", "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/cmake/linux-x64-debug",
+      "cacheVariables": {"CMAKE_BUILD_TYPE": "Debug", "BUILD_TESTING": "ON", "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"},
+      "condition": {"type": "equals", "lhs": "${hostSystemName}", "rhs": "Linux"}
+    },
+    {
+      "name": "macos-x64-debug", "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/cmake/macos-x64-debug",
+      "cacheVariables": {"CMAKE_BUILD_TYPE": "Debug", "CMAKE_OSX_ARCHITECTURES": "x86_64", "BUILD_TESTING": "ON"},
+      "condition": {"type": "equals", "lhs": "${hostSystemName}", "rhs": "Darwin"}
+    }
+  ],
+  "buildPresets": [
+    {"name": "debug", "configurePreset": "windows-vs2026", "configuration": "Debug"},
+    {"name": "release", "configurePreset": "windows-vs2026", "configuration": "Release"}
+  ],
+  "testPresets": [
+    {"name": "debug", "configurePreset": "windows-vs2026", "configuration": "Debug", "output": {"outputOnFailure": true}},
+    {"name": "release", "configurePreset": "windows-vs2026", "configuration": "Release", "output": {"outputOnFailure": true}}
+  ]
+}

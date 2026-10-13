@@ -1,0 +1,29 @@
+/build/
+__pycache__/
+*.pyc
+/settings.ini
+/FTL.log
+
+# Runtime data and local research databases stay on disk, outside Git.
+*.dat
+*.exe
+*.dll
+*.pdb
+*.i64
+*.idb
+*.id0
+*.id1
+*.nam
+*.til
+*.sav
+*.wav
+*.zip
+*.7z
+/third_party/*.zip
+.vs/
+.venv/
+CMakeUserPresets.json
+
+# Claude Code personal overrides
+/.claude/settings.local.json
+.obsidian/
